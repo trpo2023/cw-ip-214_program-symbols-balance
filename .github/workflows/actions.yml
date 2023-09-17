@@ -20,7 +20,7 @@ jobs:
         pip install flake8
     - name: Analysing the code with flake8
       run: |
-        flake8 $(git ls-files '*.py')
+        flake8 $(git ls-files 'src/*.py')
     - name: running tests
       run: |
         python -m unittest discover tests

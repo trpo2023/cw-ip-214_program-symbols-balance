@@ -4,6 +4,7 @@ class BalanceCheckResult:
         self.raw_str = raw_str
         self.bracket_index = bracket_index
 
+
 class BalanceChecker:
     def __init__(self):
         self.bracket_stack = []
@@ -28,16 +29,19 @@ class BalanceChecker:
                 self.bracket_stack.append((char, ind))
             elif char in self.brackets.values():
                 if not self.bracket_stack:
-                    return BalanceCheckResult("Unmatched closing bracket", str, ind)
-                last_open_bracket, open_bracket_index = self.bracket_stack.pop()
-                expected_closing_bracket = self.brackets[last_open_bracket]
+                    return BalanceCheckResult(
+                        "Unmatched closing bracket", str, ind)
+                last_op_br, open_br_ind = self.bracket_stack.pop()
+                expected_closing_bracket = self.brackets[last_op_br]
                 if char != expected_closing_bracket:
-                    return BalanceCheckResult("Mismatched closing bracket", str, ind)
-        
+                    return BalanceCheckResult(
+                        "Mismatched closing bracket", str, ind)
+
         # Check for any unmatched opening brackets
         if self.bracket_stack:
-            last_open_bracket, open_bracket_index = self.bracket_stack.pop()
-            return BalanceCheckResult("Unmatched opening bracket", str, open_bracket_index)
+            last_op_br, open_br_ind = self.bracket_stack.pop()
+            return BalanceCheckResult(
+                "Unmatched opening bracket", str, open_br_ind)
 
         # If no errors were found
         return BalanceCheckResult(False, str, -1)

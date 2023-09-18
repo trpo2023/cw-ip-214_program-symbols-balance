@@ -15,7 +15,7 @@ class BalanceChecker:
         }
         self.bracket_keys = self.brackets.keys()
 
-    def check_partial(self, str: str) -> BalanceCheckResult:
+    def check(self, str: str) -> BalanceCheckResult:
         """
         Function checks brackets balance.
         Works with text partials.
